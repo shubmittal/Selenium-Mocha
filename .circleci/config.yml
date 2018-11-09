@@ -13,11 +13,13 @@ jobs:
      command: 'sudo SAUCELAB_USERNAME=$SAUCELAB_USERNAME SAUCELAB_ACCESSKEY=$SAUCELAB_ACCESSKEY npm run test'
 
   
+
 workflows:
-  version: 2
-  deploy:
-    triggers:
+   version: 2
+   test:
+     triggers:
        - schedule:
-           cron: "15 * * * * 'America/Los_Angeles'"
-    jobs:
-      - test_dev
+           cron: "0 0 * * *"
+  
+     jobs:
+       - test-dev
