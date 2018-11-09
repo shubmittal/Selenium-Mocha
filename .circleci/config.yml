@@ -1,0 +1,20 @@
+version: 2
+jobs:
+ test_dev:
+  docker:
+   - image: circleci/node:10-browsers
+  steps:
+  - checkout  
+  - run:
+     name: Update npm
+     command: 'sudo npm install'
+  - run:
+     name: Run ember build
+     command: 'sudo SAUCELAB_USERNAME=$SAUCELAB_USERNAME SAUCELAB_ACCESSKEY = $SAUCELAB_ACCESSKEY npm run test'
+
+  
+workflows:
+  version: 2
+  deploy:
+    jobs:
+      - test_dev
