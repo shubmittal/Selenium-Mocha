@@ -19,10 +19,10 @@ workflows:
    test:
      triggers:
        - schedule:
-           cron: "20 * * * * "
+           cron: "20 * * * *"
            filters:
             branches:
               only:
                 - master  
      jobs:
-       - test-dev
+       - test_dev
