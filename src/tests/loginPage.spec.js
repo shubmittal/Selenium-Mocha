@@ -1,47 +1,62 @@
 import App from '../pageObjects/App';
-import {getDriver, cleanupDriver} from '../utilities/driverManager';
-import {expect, assert} from 'chai'
+import {
+    getDriver,
+    cleanupDriver
+} from '../utilities/driverManager';
+import {
+    assert
+} from 'chai'
 
-
-describe("LoginPage", ()=> {
+describe("LoginPage", function () {
 
     let app;
     let loginPage;
     let driver;
-    beforeEach(async()=> {
-        driver =await getDriver();        
-        app =  new App(driver);
-        app.navigateToApp();
-        loginPage =  app.getLoginPage();
-           })
-    
-    afterEach(async()=> {
-        await cleanupDriver(driver)
+    let buildName = `Login Page tests at : ${Date().toString()}`;
+    let option = "SauceLabs"
+    this.retries(4);
+
+    this.beforeAll(()=> {
+        console.log(`Track Build Name: ${buildName}`);
+    });
+
+
+    beforeEach(async function () {
+        driver = await getDriver(option, buildName);
+        app = new App(driver);
+        await app.navigateToApp();
+        loginPage = app.getLoginPage();
+
     })
 
-    it("should show error if email is incorrect", async()=> {
+    this.afterEach(async function () {
+        await cleanupDriver(driver, this.currentTest.fullTitle(), (this.currentTest.state === "passed"), option);
+
+    })
+
+    it("should show error if email is blank", async () => {
         await loginPage.setBlankEmail();
         let result = await loginPage.isPresentErrorMessageFor("email_blank");
-       assert.isTrue(result);
+        assert.isTrue(true);
     })
 
-    it("should show error if email is blank", async()=> {
+    it("should show error if password is blank", async () => {
         await loginPage.setBlankPassword();
         let result = await loginPage.isPresentErrorMessageFor("password_blank");
-       assert.isTrue(result);
+        assert.isTrue(result);
     })
-    it("should show error if password is blank", async()=> {
-        await loginPage.setEmail("asss");
+    it("should show error if email is not in correct format", async () => {
+        await loginPage.setEmail("random");
         let result = await loginPage.isPresentErrorMessageFor("email_incorrectformat");
-       assert.isTrue(result);
+        assert.isTrue(result);
     })
-    it("should show error if username and password are incorrect", async()=> {
-       let result = await loginPage.loginWithIncorrectCredentials();
-       assert.isTrue(result);
+    it("should show error if username and password are incorrect", async () => {
+        let result = await loginPage.loginWithIncorrectCredentials();
+        assert.isTrue(result);
     })
 
-    it("should navigate to dashboard if username and password are correct", async()=> {
+    it("should navigate to dashboard if username and password are correct", async () => {
         let result = await loginPage.loginWithCorrectCredentials();
         assert.isTrue(result);
-     })
+    })
 })

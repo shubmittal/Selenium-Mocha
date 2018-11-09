@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha  --timeout 10000 --recursive './src/tests/*.js' --require @babel/polyfill --require @babel/register --require @babel/plugin-transform-for-of"
- 
+    "test": "mocha  --timeout 99999999 --recursive './src/tests/*.js' --require @babel/polyfill --require @babel/register --require @babel/plugin-transform-for-of"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +12,7 @@
     "@babel/polyfill": "^7.0.0",
     "chromedriver": "^2.43.1",
     "geckodriver": "^1.14.1",
+    "saucelabs": "^1.5.0",
     "selenium-webdriver": "^4.0.0-alpha.1"
   },
   "devDependencies": {
