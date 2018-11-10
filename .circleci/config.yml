@@ -10,7 +10,18 @@ jobs:
      command: 'sudo npm install'
   - run:
      name: Run test script
-     command: 'sudo SAUCELAB_USERNAME=$SAUCELAB_USERNAME SAUCELAB_ACCESSKEY=$SAUCELAB_ACCESSKEY npm run test'
+     command: 'sudo BASE_URL=$BASE_URL_DEV SAUCELAB_USERNAME=$SAUCELAB_USERNAME SAUCELAB_ACCESSKEY=$SAUCELAB_ACCESSKEY npm run test'
+ test_prod:
+  docker:
+   - image: circleci/node:10-browsers
+  steps:
+  - checkout  
+  - run:
+     name: Update npm
+     command: 'sudo npm install'
+  - run:
+     name: Run test script
+     command: 'sudo BASE_URL=$BASE_URL_PROD SAUCELAB_USERNAME=$SAUCELAB_USERNAME SAUCELAB_ACCESSKEY=$SAUCELAB_ACCESSKEY npm run testprod' 
 
   
 
@@ -26,3 +37,4 @@ workflows:
                 - master  
      jobs:
        - test_dev
+       - test_prod

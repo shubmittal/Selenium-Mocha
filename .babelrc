@@ -1,4 +1,7 @@
 {
     "presets": ["@babel/preset-env"],
-    "plugins" : ["@babel/plugin-transform-for-of"]
+    "plugins" : [
+      "@babel/plugin-transform-for-of",
+      "@babel/plugin-proposal-class-properties"    
+    ]
   }

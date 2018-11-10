@@ -4,19 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha  --timeout 99999999 --recursive './src/tests/*.js' --require @babel/polyfill --require @babel/register --require @babel/plugin-transform-for-of"
+    "test": "mocha --opts ./mocha.opts './src/tests/*.js'",
+    "testprod" : "mocha --opts ./mocha.opts './src/tests/*.js' --grep @NoProd --invert"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
-  
     "saucelabs": "^1.5.0",
     "selenium-webdriver": "^4.0.0-alpha.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.5",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-transform-for-of": "^7.0.0",
     "@babel/preset-env": "^7.1.5",
     "@babel/register": "^7.0.0",

@@ -55,7 +55,7 @@ describe("LoginPage", function () {
         assert.isTrue(result);
     })
 
-    it("should navigate to dashboard if username and password are correct", async () => {
+    it("should navigate to dashboard if username and password are correct @NoProd", async () => {
         let result = await loginPage.loginWithCorrectCredentials();
         assert.isTrue(result);
     })

@@ -2,21 +2,22 @@ import {By, until, Key, WebElement} from 'selenium-webdriver'
 import Dashboard from './Dashboard'
 
 export default class LoginPage{
-    constructor(driver)
-    {
-        this.driver = driver;
-        this.loc_h2 =  By.css("h2")
-        this.loc_inputEmail = By.id("email");
-        this.loc_inputPassword = By.id("password");
-        this.loc_btnSubmit = By.css("button");
-        this.errorMessages = {
+    
+     loc_h2 =  By.css("h2");
+     loc_inputEmail = By.id("email");
+     loc_inputPassword = By.id("password");
+     loc_btnSubmit = By.css("button");
+     errorMessages = {
             "email_blank":'"Email" is not allowed to be empty',
             "email_incorrectformat":'"Email" must be a valid email',
             "password_blank" :'"Password" is not allowed to be empty',
             "credentials_incorrect" :'Invalid email and/ or password.' 
         }
-
-    }
+    
+    constructor(driver)
+    {
+        this.driver = driver;
+            }
 
       async isLoginPage ()
         {
@@ -81,9 +82,10 @@ export default class LoginPage{
             await this.setEmail("shubhra.goel@gmail.com");
             await this.setPassword ("5d7c864c-9ec4-4560-a050-3e0ad38518f4TEMP");
             await this.clickSubmit();
-            let dashboard = new Dashboard(this.driver);
-            let result= await dashboard.isDashboardPage();
-            return result;
+            let dashboardlocator =  Dashboard.getDefaultLocator();
+            await this.driver.wait(until.elementLocated(dashboardlocator));
+            let result= await this.driver.findElement(dashboardlocator);
+            return !!result;
             
 
         }
