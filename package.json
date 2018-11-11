@@ -21,7 +21,8 @@
     "Babel7",
     "React",
     "WebDriver",
-    "Chai"
+    "Chai",
+    "Page Object Model (POM)"
   ],
   "author": "Shubhra Mittal",
   "license": "ISC",
