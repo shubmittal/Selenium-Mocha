@@ -5,7 +5,7 @@ export default class App{
     constructor(driver)
     {
         this.driver = driver;
-        this.baseURL = process.env.BASE_URL || "https://hgnapplication_react_dev.surge.sh";
+        this.baseURL = process.env.BASE_URL;
     }
 
  async navigateToApp()

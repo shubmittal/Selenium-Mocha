@@ -12,7 +12,7 @@ describe("LoginPage", function () {
     let app;
     let loginPage;
     let driver;
-    let buildName = `Login Page tests at : ${Date().toString()}`;
+    let buildName = `Environment: ${process.env.BASE_URL}. Login Page tests at : ${Date().toString()}`;
     let option = "SauceLabs"
     this.retries(4);
 
